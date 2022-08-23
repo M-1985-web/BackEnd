@@ -13,7 +13,7 @@
   <name>mmm</name>
   <description>Aplicacion de portfolio web</description>
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>17</java.version>
     <start-class>com.apportfolio.mmm.MmmApplication</start-class>
   </properties>
 
