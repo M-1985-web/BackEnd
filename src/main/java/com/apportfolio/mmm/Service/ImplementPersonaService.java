@@ -7,7 +7,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+//agrege transactional ojo ver como funciona
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class ImplementPersonaService implements IPersonaService {
     @Autowired IPersonaRepository ipersonaRepository;
     
