@@ -1,4 +1,3 @@
-
 package com.apportfolio.mmm.Controller;
 
 
@@ -6,26 +5,20 @@ import com.apportfolio.mmm.Dto.DtoExperiencia;
 import com.apportfolio.mmm.Entity.Experiencia;
 import com.apportfolio.mmm.Security.Controller.Mensaje;
 import com.apportfolio.mmm.Service.ImplementExperienciaService;
+
+
 import org.apache.commons.lang3.StringUtils;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import java.util.List;
 
 
 @RestController
-@RequestMapping("explab")
+//@RequestMapping("/explab")
+@RequestMapping("experiencia")
 @CrossOrigin(origins = "http://localhost:4200")
 //@CrossOrigin(origins = "https://frontendmmm.web.app")
 
@@ -52,15 +45,19 @@ public class ExperienciaController {
   }
 
 
+
+
   //trae cualquier dato, una nueva experiencia
   @PostMapping("/create")
   public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoexp){
     if(StringUtils.isBlank(dtoexp.getNombreE()))
-      return new ResponseEntity<>(new Mensaje("el nombre es obigatorio"), HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(new Mensaje("el nombre es obigatorio, POR FAVOR AGREGAR UNO"), HttpStatus.BAD_REQUEST);
     if(implementExperienciaService.existsByNombreE(dtoexp.getNombreE()))
       return new ResponseEntity<>(new Mensaje("la experiencia ya existe"), HttpStatus.BAD_REQUEST);
 
-    Experiencia experiencia = new Experiencia(dtoexp.getNombreE(), dtoexp.getDescripcionE());
+    Experiencia experiencia = new Experiencia(
+            dtoexp.getNombreE(), dtoexp.getDescripcionE(), dtoexp.getImgE()
+    );
     implementExperienciaService.save(experiencia);
 
     return new ResponseEntity<>(new Mensaje("Experiencia agregada"), HttpStatus.OK);
@@ -89,6 +86,7 @@ public class ExperienciaController {
     Experiencia experiencia = implementExperienciaService.getOne(id).get();
     experiencia.setNombreE(dtoexp.getNombreE());
     experiencia.setDescripcionE(dtoexp.getDescripcionE());
+    experiencia.setImgE(dtoexp.getImgE());
 
     implementExperienciaService.save(experiencia);
       return new ResponseEntity<>(new Mensaje("Experiencia actualizada correctamente"), HttpStatus.OK);

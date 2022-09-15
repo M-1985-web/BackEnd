@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/educacion")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,7 +34,7 @@ public class EducacionController {
   @GetMapping("/detail/{id}")
   public ResponseEntity<?> getById(@PathVariable("id")int id){
     if(!implementEducacionService.existsById(id)){
-      return new ResponseEntity<>(new Mensaje("No existe el ID, indiquelo nuevamente"), HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(new Mensaje("No existe el ID, indiquelo nuevamente, POR FAVOR AGREGAR UNO"), HttpStatus.BAD_REQUEST);
     }
     Educacion educacion = implementEducacionService.getOne(id).get();
     return new ResponseEntity<>(educacion, HttpStatus.OK);
@@ -65,7 +66,7 @@ public class EducacionController {
     }
 
     Educacion educacion = new Educacion(
-      dtoEducacion.getNombreEdu(), dtoEducacion.getDescripcionEdu()
+      dtoEducacion.getNombreEdu(), dtoEducacion.getDescripcionEdu(), dtoEducacion.getImgEdu()
     );
     //aca entra el nombre y la descripcion nueva
     implementEducacionService.save(educacion);
@@ -93,6 +94,7 @@ public class EducacionController {
     //aca actualizamos los parametros ingresados
     educacion.setNombreEdu(dtoEducacion.getNombreEdu());
     educacion.setDescripcionEdu(dtoEducacion.getDescripcionEdu());
+    educacion.setImgEdu(dtoEducacion.getImgEdu());
 
     implementEducacionService.save(educacion);
     return new ResponseEntity<>(new Mensaje("Educacion actualizada con exito"), HttpStatus.OK);

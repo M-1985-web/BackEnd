@@ -1,20 +1,28 @@
 package com.apportfolio.mmm.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class NewProyec {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank
     private String titulo;
+    @NotBlank
     private String descripcionP;
     private String img;
+
+
 
 
     //constructor
@@ -27,6 +35,7 @@ public class NewProyec {
         this.titulo = titulo;
         this.descripcionP = descripcionP;
         this.img = img;
+
     }
 
     //Getter and Setter
@@ -62,5 +71,6 @@ public class NewProyec {
     public void setImg(String img) {
         this.img = img;
     }
+
 
 }

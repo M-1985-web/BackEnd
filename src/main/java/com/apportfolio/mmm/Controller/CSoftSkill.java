@@ -26,11 +26,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 import java.util.List;
 
 @RestController
 @RequestMapping("softskill")
 @CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://frontendmmm.web.app")
 
 
 public class CSoftSkill {
@@ -53,7 +55,7 @@ public class CSoftSkill {
         SoftSkill skill = sSoftSkill.buscarById(id).get();
         return new ResponseEntity<>(skill, HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id")int id){
         if(!sSoftSkill.existsById(id)){
@@ -62,7 +64,7 @@ public class CSoftSkill {
         sSoftSkill.delete(id);
         return new ResponseEntity<>(new Mensaje("La skill fue eliminada."), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoSoftSkill dtoskill){
         if(StringUtils.isBlank(dtoskill.getNombreS())){
@@ -73,7 +75,7 @@ public class CSoftSkill {
         sSoftSkill.save(skill);
         return new ResponseEntity<>(new Mensaje("la skill fue agregada correctamente"), HttpStatus.OK);
     }
-    @PreAuthorize("hasRole('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody dtoSoftSkill dtoskill){
         if(!sSoftSkill.existsById(id)){

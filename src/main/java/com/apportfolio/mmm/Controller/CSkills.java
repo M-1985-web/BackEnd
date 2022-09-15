@@ -29,6 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("skill")
 @CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "https://frontendmmm.web.app")
+
 
 
 public class CSkills {
@@ -52,7 +54,7 @@ public class CSkills {
         return new ResponseEntity<>(skill, HttpStatus.OK);
         }
 
-        @PreAuthorize("hasRole('ADMIN')")
+        //@PreAuthorize("hasRole('ADMIN')")
         @DeleteMapping("/delete/{id}")
         public ResponseEntity<?> delete(@PathVariable("id") int id) {
         if (!sSkills.existsById(id)) {
@@ -62,7 +64,7 @@ public class CSkills {
         return new ResponseEntity<>(new Mensaje("La Skill fue eliminada con exito"), HttpStatus.OK);
         }
 
-        @PreAuthorize("hasRole('ADMIN')")
+        //@PreAuthorize("hasRole('ADMIN')")
         @PostMapping("/create")
         public ResponseEntity<?> create(@RequestBody dtoSkills dtoskill) {
         if (StringUtils.isBlank(dtoskill.getNombreS())) {
@@ -79,7 +81,7 @@ public class CSkills {
         return new ResponseEntity<>(new Mensaje("Skill agregada con exito"), HttpStatus.OK);
         }
 
-        @PreAuthorize("hasRole('ADMIN')")
+        //@PreAuthorize("hasRole('ADMIN')")
         @PutMapping("/update/{id}")
         public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoSkills dtoskill) {
         if (!sSkills.existsById(id)) {
