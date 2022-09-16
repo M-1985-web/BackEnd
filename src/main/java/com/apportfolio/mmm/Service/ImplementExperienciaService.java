@@ -26,8 +26,8 @@ public class ImplementExperienciaService {
   }
 
   //busca por nombre
-  public Optional<Experiencia> getByNombreE(String nombreE){
-    return iExperienciaRepository.findByNombreE(nombreE);
+  public Optional<Experiencia> getByNombreExperiencia(String nombreExperiencia){
+    return iExperienciaRepository.findByNombreExperiencia(nombreExperiencia);
   }
 
   //guarda dato de tipo experiencia
@@ -43,8 +43,8 @@ public class ImplementExperienciaService {
     return iExperienciaRepository.existsById(id);
   }
 
-  public boolean existsByNombreE(String nombreE){
-    return iExperienciaRepository.existsByNombreE(nombreE);
+  public boolean existsByNombreExperiencia(String nombreExperiencia){
+    return iExperienciaRepository.existsByNombreExperiencia(nombreExperiencia);
   }
 
 

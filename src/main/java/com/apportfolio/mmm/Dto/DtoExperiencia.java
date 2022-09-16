@@ -5,11 +5,11 @@ import javax.validation.constraints.NotBlank;
 
 public class DtoExperiencia {
   @NotBlank
-  private String nombreE;
+  private String nombreExperiencia;
   @NotBlank
-  private String descripcionE;
+  private String descripcionExperiencia;
 
-  private String imgE;
+  private String imgExperiencia;
 
 
   //constructores
@@ -17,37 +17,37 @@ public class DtoExperiencia {
   public DtoExperiencia() {
   }
 
-  public DtoExperiencia(String nombreE, String descripcionE, String imgE) {
-    this.nombreE = nombreE;
-    this.descripcionE = descripcionE;
-    this.imgE = imgE;
+  public DtoExperiencia(String nombreExperiencia, String descripcionExperiencia, String imgExperiencia) {
+    this.nombreExperiencia = nombreExperiencia;
+    this.descripcionExperiencia = descripcionExperiencia;
+    this.imgExperiencia = imgExperiencia;
   }
 
   //getter y setter
 
 
-  public String getNombreE() {
-    return nombreE;
+  public String getNombreExperiencia() {
+    return nombreExperiencia;
   }
 
-  public void setNombreE(String nombreE) {
-    this.nombreE = nombreE;
+  public void setNombreExperiencia(String nombreExperiencia) {
+    this.nombreExperiencia = nombreExperiencia;
   }
 
-  public String getDescripcionE() {
-    return descripcionE;
+  public String getDescripcionExperiencia() {
+    return descripcionExperiencia;
   }
 
-  public void setDescripcionE(String descripcionE) {
-    this.descripcionE = descripcionE;
+  public void setDescripcionExperiencia(String descripcionExperiencia) {
+    this.descripcionExperiencia = descripcionExperiencia;
   }
 
-  public String getImgE() {
-    return imgE;
+  public String getImgExperiencia() {
+    return imgExperiencia;
   }
 
-  public void setImgE(String descripcionE) {
-    this.imgE = imgE;
+  public void setImgExperiencia(String imgExperiencia) {
+    this.imgExperiencia = imgExperiencia;
   }
 
 

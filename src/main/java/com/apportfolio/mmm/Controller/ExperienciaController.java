@@ -16,12 +16,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
+
 //@RequestMapping("/explab")
-@RequestMapping("experiencia")
+
 @CrossOrigin(origins = "http://localhost:4200")
 //@CrossOrigin(origins = "https://frontendmmm.web.app")
-
+@RequestMapping("experiencia")
+@RestController
 
 public class ExperienciaController {
   @Autowired
@@ -50,13 +51,13 @@ public class ExperienciaController {
   //trae cualquier dato, una nueva experiencia
   @PostMapping("/create")
   public ResponseEntity<?> create(@RequestBody DtoExperiencia dtoexp){
-    if(StringUtils.isBlank(dtoexp.getNombreE()))
+    if(StringUtils.isBlank(dtoexp.getNombreExperiencia()))
       return new ResponseEntity<>(new Mensaje("el nombre es obigatorio, POR FAVOR AGREGAR UNO"), HttpStatus.BAD_REQUEST);
-    if(implementExperienciaService.existsByNombreE(dtoexp.getNombreE()))
+    if(implementExperienciaService.existsByNombreExperiencia(dtoexp.getNombreExperiencia()))
       return new ResponseEntity<>(new Mensaje("la experiencia ya existe"), HttpStatus.BAD_REQUEST);
 
     Experiencia experiencia = new Experiencia(
-            dtoexp.getNombreE(), dtoexp.getDescripcionE(), dtoexp.getImgE()
+            dtoexp.getNombreExperiencia(), dtoexp.getDescripcionExperiencia(), dtoexp.getImgExperiencia()
     );
     implementExperienciaService.save(experiencia);
 
@@ -71,11 +72,11 @@ public class ExperienciaController {
       return new ResponseEntity<>(new Mensaje("El ID no existe"), HttpStatus.BAD_REQUEST);
 
     //compara si dos experiencias son similares
-    if(implementExperienciaService.existsByNombreE(dtoexp.getNombreE()) && implementExperienciaService.getByNombreE(dtoexp.getNombreE()).get().getId()!=id)
+    if(implementExperienciaService.existsByNombreExperiencia(dtoexp.getNombreExperiencia()) && implementExperienciaService.getByNombreExperiencia(dtoexp.getNombreExperiencia()).get().getId()!=id)
       return new ResponseEntity<>(new Mensaje("ya existe la experiencia"), HttpStatus.BAD_REQUEST);
 
     //el campo no puede estar vacio
-    if(StringUtils.isBlank(dtoexp.getNombreE()))
+    if(StringUtils.isBlank(dtoexp.getNombreExperiencia()))
       return new ResponseEntity<>(new Mensaje("El nombre no puede estar en blanco"), HttpStatus.BAD_REQUEST);
 
     //replicar los 3 if con descripcion
@@ -84,9 +85,9 @@ public class ExperienciaController {
     //arriba los filtros
     //si trae el dato correcto
     Experiencia experiencia = implementExperienciaService.getOne(id).get();
-    experiencia.setNombreE(dtoexp.getNombreE());
-    experiencia.setDescripcionE(dtoexp.getDescripcionE());
-    experiencia.setImgE(dtoexp.getImgE());
+    experiencia.setNombreExperiencia(dtoexp.getNombreExperiencia());
+    experiencia.setDescripcionExperiencia(dtoexp.getDescripcionExperiencia());
+    //experiencia.setImgE(dtoexp.getImgE());
 
     implementExperienciaService.save(experiencia);
       return new ResponseEntity<>(new Mensaje("Experiencia actualizada correctamente"), HttpStatus.OK);
