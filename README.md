@@ -55,6 +55,10 @@ Proyectos.
 
 [Heroku](https://id.heroku.com/)
 
+## Licencia 🚀
 
+Completamente gratis (MIT)! Consulte [LICENSE.md](LICENSE.md) para obtener más 
+
+información.
 
 
