@@ -42,8 +42,7 @@ Proyectos.
 
 ## Lenguaje BackEnd 🚀
 
-[Java v.17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.
-html)
+[Java v.17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 
 
 ## Entorno BackEnd 🚀
@@ -57,15 +56,5 @@ html)
 [Heroku](https://id.heroku.com/)
 
 
-### IntelliJ IDEA
 
-![IntelliJ](https://github.com/M-1985-web/FrontEnd/blob/master/src/assets/
-readmeFront/intellJ.png)
-
-
-
-## Lenguaje BackEnd 🚀
-
-[Java v.17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.
-html)
 
