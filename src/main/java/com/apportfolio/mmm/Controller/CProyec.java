@@ -26,8 +26,8 @@ import java.util.List;
 @RestController
 @RequestMapping("proyec")
 
-@CrossOrigin(origins = "http://localhost:4200")
-//@CrossOrigin(origins = "https://frontendmmm.web.app")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://frontendmmm.web.app")
 
 
 public class CProyec {
