@@ -23,7 +23,7 @@ public class MmmApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("https://portafolioweb-de08f.web.app/")
+						.allowedOrigins("*")
 						.allowedMethods("*")
 						.allowedHeaders("*");
 			}
