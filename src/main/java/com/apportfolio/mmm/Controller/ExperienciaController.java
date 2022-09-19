@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-
-//@RequestMapping("/explab")
+@CrossOrigin(origins = "https://frontendmmm.web.app")
 @RequestMapping("experiencia")
 @RestController
-
+//@RequestMapping("/explab")
 //@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://frontendmmm.web.app/")
+
 
 
 public class ExperienciaController {
