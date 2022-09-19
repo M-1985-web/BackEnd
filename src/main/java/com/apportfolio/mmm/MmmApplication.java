@@ -14,14 +14,11 @@ public class MmmApplication {
 		SpringApplication.run(MmmApplication.class, args);
 	}
 
-
-	//agre esto ultimo
-
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
-			public void addCorsMappings(CorsRegistry registry){
+			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
 						.allowedOrigins("*")
 						.allowedMethods("*")
