@@ -1,7 +1,7 @@
 package com.apportfolio.mmm.Entity;
 
 
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 
 
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Entity
 public class Skills {
     @Id
