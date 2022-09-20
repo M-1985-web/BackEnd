@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @CrossOrigin(origins = "https://frontendmmm.web.app")
-@RequestMapping("experiencia")
+@RequestMapping("exp")
 @RestController
 //@RequestMapping("/explab")
 //@CrossOrigin(origins = "http://localhost:4200")

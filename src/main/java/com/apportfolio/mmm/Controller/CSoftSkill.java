@@ -32,7 +32,7 @@ import java.util.List;
 
 
 @CrossOrigin(origins = "https://frontendmmm.web.app")
-@RequestMapping("softskill")
+@RequestMapping("softskills")
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
 public class CSoftSkill {
