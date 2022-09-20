@@ -63,7 +63,7 @@ public class AuthController {
     BindingResult bindingResult
   ) {
     if (bindingResult.hasErrors()) return new ResponseEntity<>(
-      new Mensaje("Campos incorrectos o email invalido"),
+      new Mensaje("Campos incorrectos o email invalido."),
       HttpStatus.BAD_REQUEST
     );
 
