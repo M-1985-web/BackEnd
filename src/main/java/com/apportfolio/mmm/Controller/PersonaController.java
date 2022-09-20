@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "https://frontendmmm.web.app")
+@CrossOrigin(origins = "https://frontendmmm.web.app/")
 @RestController
-@RequestMapping("persona")
+@RequestMapping("personas")
 //@CrossOrigin(origins = "http://localhost:4200")
 public class PersonaController {
   @Autowired
