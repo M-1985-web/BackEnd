@@ -50,8 +50,9 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
   // cambio override por @Bean
   // y cambio protected void configure(HttpSecurity http) throws Exception {
   //por
-  @Bean
-  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  @Override
+  //public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+  protected void configure(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
             .exceptionHandling().authenticationEntryPoint(jwtEntryPoint).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -61,20 +62,21 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     http.addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
 
-    return http.build();
+    //return http.build();
 
   }
 
-  //agrego AuthenticationConfiguration authenticationConfiguration
+  //agrego AuthenticationConfiguration authenticationConfiguration en ()
   @Bean
-  protected AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-    //return super.authenticationManager();
-    return authenticationConfiguration.getAuthenticationManager();
+  protected AuthenticationManager authenticationManager() throws Exception {
+
+      return super.authenticationManager();
+    //return authenticationConfiguration.getAuthenticationManager();
   }
 
 
 
-  /*
+
   @Bean
   @Override
   public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -85,7 +87,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsImpl).passwordEncoder(passwordEncoder());
   }
-  */
+
 
 
 }
