@@ -55,7 +55,7 @@ public class CProyec {
             return new ResponseEntity<>(new Mensaje("El Proyecto ya existe."), HttpStatus.BAD_REQUEST);
         }
         if (StringUtils.isBlank(dtopro.getTitulo())) {
-            return new ResponseEntity<>(new Mensaje("El nombre del proyecto es obligatorio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new Mensaje("El nombre del proyecto es obligatorio!"), HttpStatus.BAD_REQUEST);
         }
 
         NewProyec proyec = new NewProyec(dtopro.getTitulo(), dtopro.getDescripcionP(), dtopro.getImg());
