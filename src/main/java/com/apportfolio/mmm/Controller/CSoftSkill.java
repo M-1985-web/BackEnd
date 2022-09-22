@@ -31,7 +31,7 @@ import java.util.List;
 
 
 
-@CrossOrigin(origins = "https://frontendmmm.web.app")
+@CrossOrigin(origins = "https://frontendmmm.web.app/")
 @RequestMapping("softskills")
 @RestController
 //@CrossOrigin(origins = "http://localhost:4200")
