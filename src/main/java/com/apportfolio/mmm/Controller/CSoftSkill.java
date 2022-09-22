@@ -30,10 +30,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-
-@CrossOrigin(origins = "https://frontendmmm.web.app")
-@RequestMapping("/softskills")
 @RestController
+@RequestMapping("/softskills")
+@CrossOrigin(origins = "https://frontendmmm.web.app")
+
+
 //@CrossOrigin(origins = "http://localhost:4200")
 public class CSoftSkill {
     @Autowired

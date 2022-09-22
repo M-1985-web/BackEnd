@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 
-@CrossOrigin(origins = "https://frontendmmm.web.app")
-@RequestMapping("/proy")
 @RestController
+@RequestMapping("/proy")
+@CrossOrigin(origins = "https://frontendmmm.web.app")
+
+
 //@CrossOrigin(origins = "http://localhost:4200")
 public class CProyec {
 
