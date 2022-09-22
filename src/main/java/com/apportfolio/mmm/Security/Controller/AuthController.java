@@ -35,10 +35,13 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin(origins = "http://localhost:4200")
 //produccion
 //sacarle la URL
-@CrossOrigin(origins = "https://frontendmmm.web.app")
-//@CrossOrigin()
-@RequestMapping("auth")
+//@CrossOrigin(origins = "https://frontendmmm.web.app")
+
+@CrossOrigin()
+@RequestMapping("/auth")
 @RestController
+
+
 public class AuthController {
 
   @Autowired
@@ -58,35 +61,22 @@ public class AuthController {
 
   @PostMapping("/nuevo")
   //no lo piden pero aca creamos un usuario nuevo
-  public ResponseEntity<?> nuevo(
-    @Valid @RequestBody NuevoUsuario nuevoUsuario,
-    BindingResult bindingResult
-  ) {
-    if (bindingResult.hasErrors()) return new ResponseEntity<>(
-      new Mensaje("Campos incorrectos o email invalido."),
-      HttpStatus.BAD_REQUEST
-    );
+  public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario,
+    BindingResult bindingResult) {
 
-    if (
-      usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario())
-    ) return new ResponseEntity<>(
-      new Mensaje("Nombre de usuario existente"),
-      HttpStatus.BAD_REQUEST
-    );
+    if (bindingResult.hasErrors())
+      return new ResponseEntity<>(new Mensaje("Campos incorrectos o email invalido."),
+      HttpStatus.BAD_REQUEST);
 
-    if (
-      usuarioService.existsByEmail(nuevoUsuario.getEmail())
-    ) return new ResponseEntity<>(
-      new Mensaje("Email existente"),
-      HttpStatus.BAD_REQUEST
-    );
+    if (usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
+      return new ResponseEntity<>(new Mensaje("Nombre de usuario existente"),
+      HttpStatus.BAD_REQUEST);
 
-    Usuario usuario = new Usuario(
-      nuevoUsuario.getNombre(),
-      nuevoUsuario.getNombreUsuario(),
-      nuevoUsuario.getEmail(),
-      passwordEncoder.encode(nuevoUsuario.getPassword())
-    );
+    if (usuarioService.existsByEmail(nuevoUsuario.getEmail()))
+      return new ResponseEntity<>(new Mensaje("Email existente"),
+      HttpStatus.BAD_REQUEST);
+
+    Usuario usuario = new Usuario(nuevoUsuario.getNombre(),nuevoUsuario.getNombreUsuario(),nuevoUsuario.getEmail(),passwordEncoder.encode(nuevoUsuario.getPassword()));
 
     Set<Rol> roles = new HashSet<>();
     roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
@@ -96,42 +86,27 @@ public class AuthController {
     );
     usuario.setRoles(roles);
     usuarioService.save(usuario);
-    return new ResponseEntity<>(
-      new Mensaje("Usuario guardado con exito"),
-      HttpStatus.CREATED
-    );
+    return new ResponseEntity<>(new Mensaje("Usuario guardado con exito"),HttpStatus.CREATED);
   }
 
   @PostMapping("/login")
-  public ResponseEntity<?> login(
-    @Valid @RequestBody LoginUsuario loginUsuario,
-    BindingResult bindingResult
-  ) {
+  public ResponseEntity<?> login(@Valid @RequestBody LoginUsuario loginUsuario,BindingResult bindingResult){
     //si contiene errores
-    if (bindingResult.hasErrors()) return new ResponseEntity<>(
-      new Mensaje("Campos mal ingresados"),
-      HttpStatus.BAD_REQUEST
-    );
+    if (bindingResult.hasErrors())
+      return new ResponseEntity<>(new Mensaje("Campos mal ingresados"),HttpStatus.BAD_REQUEST);
 
-    Authentication authentication = authenticationManager.authenticate(
-      new UsernamePasswordAuthenticationToken(
-        loginUsuario.getNombreUsuario(),
-        loginUsuario.getPassword()
-      )
-    );
+    Authentication authentication = authenticationManager
+            .authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(),
+        loginUsuario.getPassword()));
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
 
     String jwt = jwtProvider.generateToken(authentication);
 
     UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-
-    JwtDto jwtDto = new JwtDto(
-      jwt,
-      userDetails.getUsername(),
-      userDetails.getAuthorities()
-    );
+    JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
 
     return new ResponseEntity<>(jwtDto, HttpStatus.OK);
   }
+
 }

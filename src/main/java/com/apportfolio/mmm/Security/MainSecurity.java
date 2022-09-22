@@ -23,7 +23,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 //clase que controla el JWT
-public class MainSecurity extends WebSecurityConfigurerAdapter {
+public class MainSecurity {
 
   @Autowired
   UserDetailsImpl userDetailsImpl;
@@ -49,10 +49,9 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
   // cambio override por @Bean
   // y cambio protected void configure(HttpSecurity http) throws Exception {
-  //por
-  @Override
-  //public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-  protected void configure(HttpSecurity http) throws Exception {
+  //por //protected void configure(HttpSecurity http) throws Exception {
+  @Bean
+  public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.cors().and().csrf().disable()
             .exceptionHandling().authenticationEntryPoint(jwtEntryPoint).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
@@ -62,20 +61,21 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     http.addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
 
-    //return http.build();
+    return http.build();
 
   }
 
   //agrego AuthenticationConfiguration authenticationConfiguration en ()
   @Bean
-  protected AuthenticationManager authenticationManager() throws Exception {
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 
-      return super.authenticationManager();
-    //return authenticationConfiguration.getAuthenticationManager();
+    //return super.authenticationManager();
+    return authenticationConfiguration.getAuthenticationManager();
   }
 
 
 
+  /*
 
   @Bean
   @Override
@@ -87,6 +87,8 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
     auth.userDetailsService(userDetailsImpl).passwordEncoder(passwordEncoder());
   }
+
+ */
 
 
 
