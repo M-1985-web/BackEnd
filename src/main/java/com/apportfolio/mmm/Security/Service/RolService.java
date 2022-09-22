@@ -13,11 +13,11 @@ import java.util.Optional;
 @Service
 @Transactional
 public class RolService {
-
   @Autowired
   IRolRepository iRolRepository;
 
   public Optional<Rol> getByRolNombre(RolNombre rolNombre){
+
     return iRolRepository.findByRolNombre(rolNombre);
   }
 

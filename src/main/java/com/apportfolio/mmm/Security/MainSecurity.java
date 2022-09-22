@@ -41,10 +41,19 @@ public class MainSecurity {
     return new BCryptPasswordEncoder();
   }
 
+
+  //agrego AuthenticationConfiguration authenticationConfiguration en ()
+  @Bean
+  public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+          throws Exception {
+    //return super.authenticationManager();
+    return authenticationConfiguration.getAuthenticationManager();
+  }
+
+
   //.antMatchers("/auth/**").permitAll()
   //
   //lo realize manualmente override
-
 
 
   // cambio override por @Bean
@@ -56,22 +65,15 @@ public class MainSecurity {
             .exceptionHandling().authenticationEntryPoint(jwtEntryPoint).and()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
-            .antMatchers("/**").permitAll()
+            .antMatchers("/auth/**").permitAll()
             .anyRequest().authenticated();
 
-    http.addFilterBefore(jwtTokenFilter(),UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
 
   }
 
-  //agrego AuthenticationConfiguration authenticationConfiguration en ()
-  @Bean
-  public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-
-    //return super.authenticationManager();
-    return authenticationConfiguration.getAuthenticationManager();
-  }
 
 
 
@@ -88,8 +90,8 @@ public class MainSecurity {
     auth.userDetailsService(userDetailsImpl).passwordEncoder(passwordEncoder());
   }
 
- */
 
+  */
 
 
 }
