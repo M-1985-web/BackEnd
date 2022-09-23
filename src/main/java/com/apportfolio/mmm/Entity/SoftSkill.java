@@ -2,11 +2,13 @@ package com.apportfolio.mmm.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -15,9 +17,11 @@ public class SoftSkill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NotNull
     private String nombreS;
+    @Range(min = 0, max = 100, message = "Ingresa un valor entre 0 y 100")
     private int capacidadS;
+    @NotNull
     private String tipoS;
 
     //constructores
@@ -25,7 +29,7 @@ public class SoftSkill {
     public SoftSkill() {
     }
 
-    public SoftSkill(String nombreS, int capacidadS, String tipoS) {
+    public SoftSkill(String nombreS,@Range(min = 1, max = 100) int capacidadS, String tipoS) {
         this.nombreS = nombreS;
         this.capacidadS = capacidadS;
         this.tipoS = tipoS;
