@@ -1,19 +1,25 @@
 package com.apportfolio.mmm.Entity;
 
 
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.util.List;
-
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-@Getter
-@Setter
+@Getter @Setter
 @Entity
 public class Persona {
     @Id
@@ -28,12 +34,12 @@ public class Persona {
 
     @NotBlank
     @Size(min = 30, max = 1000, message = "Acerca de excedio los caracteres permitidos")
-    private String aboutMe;
+    private String aboutme;
 
     @NotBlank
     private String oficio;
 
-    private String imgUrl;
+    private String imgurl;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<Educacion> educacionList;
@@ -55,102 +61,14 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(@NotBlank String nombre, @NotBlank String apellido, String imgUrl, @NotBlank String aboutMe,
+    public Persona(@NotBlank String nombre, @NotBlank String apellido, String imgurl, @NotBlank String aboutme,
                    @NotBlank String oficio) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.imgUrl = imgUrl;
-        this.aboutMe = aboutMe;
-        this.oficio = oficio;
-    }
-    //setter and getters
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getAboutMe() {
-        return aboutMe;
-    }
-
-    public void setAboutMe(String aboutMe) {
-        this.aboutMe = aboutMe;
-    }
-
-    public String getOficio() {
-        return oficio;
-    }
-
-    public void setOficio(String oficio) {
+        this.imgurl = imgurl;
+        this.aboutme = aboutme;
         this.oficio = oficio;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
-    public List<Educacion> getEducacionList() {
-        return educacionList;
-    }
-
-    public void setEducacionList(List<Educacion> educacionList) {
-        this.educacionList = educacionList;
-    }
-
-    public List<Experiencia> getExperienciaList() {
-        return experienciaList;
-    }
-
-    public void setExperienciaList(List<Experiencia> experienciaList) {
-        this.experienciaList = experienciaList;
-    }
-
-    public List<Skills> getSkillsList() {
-        return skillsList;
-    }
-
-    public void setSkillsList(List<Skills> skillsList) {
-        this.skillsList = skillsList;
-    }
-
-    public List<SoftSkill> getSoftSkillList() {
-        return softSkillList;
-    }
-
-    public void setSoftSkillList(List<SoftSkill> softSkillList) {
-        this.softSkillList = softSkillList;
-    }
-
-    public List<NewProyec> getNewProyecList() {
-        return newProyecList;
-    }
-
-    public void setNewProyecList(List<NewProyec> newProyecList) {
-        this.newProyecList = newProyecList;
-    }
 }
