@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("persona")
+@RequestMapping("/persona")
 @CrossOrigin(origins = "https://frontendmmm.web.app")
 
 public class PersonaController {
