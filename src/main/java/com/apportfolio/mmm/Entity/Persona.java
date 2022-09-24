@@ -2,8 +2,8 @@ package com.apportfolio.mmm.Entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-//import lombok.Getter;
-//import lombok.Setter;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,8 +12,8 @@ import java.util.List;
 
 
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-//@Getter
-//@Setter
+@Getter
+@Setter
 @Entity
 public class Persona {
     @Id

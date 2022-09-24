@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/persona")
+@RequestMapping("persona")
 @CrossOrigin(origins = "https://frontendmmm.web.app")
 
 public class PersonaController {
@@ -27,14 +27,14 @@ public class PersonaController {
     }
 
     @PostMapping("/crear")
-    public ResponseEntity<?> agregarPersona(@RequestBody Persona perso) {
-        if (StringUtils.isBlank(perso.getNombre())
-                && StringUtils.isBlank(perso.getApellido())
-                && StringUtils.isBlank(perso.getAboutMe())
-                && StringUtils.isBlank(perso.getOficio())) {
+    public ResponseEntity<?> agregarPersona(@RequestBody Persona persona) {
+        if (StringUtils.isBlank(persona.getNombre())
+                && StringUtils.isBlank(persona.getApellido())
+                && StringUtils.isBlank(persona.getAboutMe())
+                && StringUtils.isBlank(persona.getOficio())) {
             return new ResponseEntity<>("Campos obligatorios vacios", HttpStatus.BAD_REQUEST);
         }
-        iPersonaService.savePersona(perso);
+        iPersonaService.savePersona(persona);
         return new ResponseEntity<>("Persona creada exitosamente", HttpStatus.OK);
     }
 
