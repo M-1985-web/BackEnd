@@ -41,20 +41,6 @@ public class Persona {
 
     private String imgurl;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<Educacion> educacionList;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<Experiencia> experienciaList;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<Skills> skillsList;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<SoftSkill> softSkillList;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<NewProyec> newProyecList;
 
     //constructores
 
