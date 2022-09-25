@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/persona")
 @CrossOrigin(origins = "https://frontendmmm.web.app")
@@ -18,37 +20,47 @@ public class PersonaController {
     public IPersonaService iPersonaService;
 
     @GetMapping("/traer")
-    public ResponseEntity<?> mostrarUsuario() {
-        Persona persona = iPersonaService.traerPersona();
-        if (persona == null) {
-            return new ResponseEntity<>("Usuario no encontrado", HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity<>(persona, HttpStatus.OK);
+    public List<Persona> getPersona() {
+        return iPersonaService.getPersona();
     }
 
+    //@PreAuthorize("hasRole('ADMIN')") //este renglón refiere a que estas acciones las puede hacer solo el administrador
     @PostMapping("/crear")
-    public ResponseEntity<?> agregarPersona(@RequestBody Persona persona) {
-        if (StringUtils.isBlank(persona.getNombre())
-                && StringUtils.isBlank(persona.getApellido())
-                && StringUtils.isBlank(persona.getAboutme())
-                && StringUtils.isBlank(persona.getOficio())) {
-            return new ResponseEntity<>("Campos obligatorios vacios", HttpStatus.BAD_REQUEST);
-        }
+    public String createPersona(@RequestBody Persona persona) {
         iPersonaService.savePersona(persona);
-        return new ResponseEntity<>("Persona creada exitosamente", HttpStatus.OK);
+        return "La persona fue creada correctamente";
+    }
+    //@PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/borrar/{id}")
+    public String deletePersona(@PathVariable Long id){
+        iPersonaService.deletePersona(id);
+        return "La persona fue eliminada correctamente";
     }
 
-    @PutMapping("/editar")
-    public ResponseEntity<?> editar(@RequestBody Persona persona) {
-        if (StringUtils.isBlank(persona.getNombre())
-                && StringUtils.isBlank(persona.getApellido())
-                && StringUtils.isBlank(persona.getAboutme())
-                && StringUtils.isBlank(persona.getOficio())) {
-            return new ResponseEntity<>("Campos obligatorios vacios", HttpStatus.BAD_REQUEST);
-        }
-        Persona personaEditada = iPersonaService.editarPersona(persona);
-        return new ResponseEntity<>(personaEditada, HttpStatus.OK);
+    //@PreAuthorize("hasRole('ADMIN')")
+    //URL:PUERTO/personas/editar/4/nombre & apellido & img
+    @PutMapping("/editar/{id}")
+    public Persona editPersona(@PathVariable Long id,
+                               @RequestParam("nombre") String nuevoNombre,
+                               @RequestParam("apellido") String nuevoApellido,
+                               @RequestParam("imgurl") String nuevoImgurl,
+                               @RequestParam("oficio") String nuevoOficio,
+                               @RequestParam("aboutme") String nuevoAboutme){
+        Persona persona = iPersonaService.findPersona(id);
+
+        persona.setNombre(nuevoNombre);
+        persona.setApellido(nuevoApellido);
+        persona.setImgurl(nuevoImgurl);
+        persona.setOficio(nuevoOficio);
+        persona.setAboutme(nuevoAboutme);
+
+        iPersonaService.savePersona(persona);
+        return persona;
     }
 
+    @GetMapping("/traer/perfil")
+    public Persona findPersona(){
+        return iPersonaService.findPersona((long)1);
+    }
 
 }

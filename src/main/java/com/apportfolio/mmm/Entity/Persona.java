@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @NotBlank
     @Size(min = 1, max = 50, message = "nombre muy extenso, por favor agregar otro")
     private String nombre;
@@ -58,6 +58,7 @@ public class Persona {
 
     //constructores
 
+    /*
     public Persona() {
     }
 
@@ -70,5 +71,6 @@ public class Persona {
         this.oficio = oficio;
     }
 
+     */
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
@@ -16,33 +17,27 @@ public class PersonaService implements IPersonaService {
     PersonaRepo personaRepo;
 
     @Override
-    public void deletePersona(int id) {
-        personaRepo.deleteById(1);
-
-    }
-
-    @Override
-    public Persona editarPersona(Persona nuevaPersona) {
-        Persona persona = personaRepo.findById(1).orElse(null);
-        persona.setNombre(nuevaPersona.getNombre());
-        persona.setApellido(nuevaPersona.getApellido());
-        persona.setImgurl(nuevaPersona.getImgurl());
-        persona.setAboutme(nuevaPersona.getAboutme());
-        persona.setOficio(nuevaPersona.getOficio());
-
+    public List<Persona> getPersona() {
+        List<Persona> persona = personaRepo.findAll();
         return persona;
     }
 
     @Override
-    public void savePersona(Persona persona) {personaRepo.save(persona);}
-
-    @Override
-    public Persona traerPersona() {
-        return personaRepo.getReferenceById(1);
-        //return personaRepo.getById(1);
-        //getReferenceById(1);
+    public void savePersona(Persona persona) {
+        personaRepo.save(persona);
     }
 
+    @Override
+    public void deletePersona(Long id) {
+        personaRepo.deleteById(id);
+    }
+
+    @Override
+    public Persona findPersona(Long id) {
+        Persona persona = personaRepo.findById(id).orElse(null);
+        return persona;
+
+    }
 
 
 }
