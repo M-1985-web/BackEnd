@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("persona")
-@CrossOrigin(origins = "https://frontendmmm.web.app/")
+@CrossOrigin(origins = "https://frontendmmm.web.app")
 
 public class PersonaController {
     @Autowired
