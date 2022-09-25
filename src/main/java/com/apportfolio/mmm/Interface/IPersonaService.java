@@ -1,14 +1,10 @@
-package com.apportfolio.mmm.Service;
-
+package com.apportfolio.mmm.Interface;
 
 import com.apportfolio.mmm.Entity.Persona;
 
 import java.util.List;
 
 public interface IPersonaService {
-
-
-
     //Traer una lista de personas
     public List<Persona> getPersona();
 

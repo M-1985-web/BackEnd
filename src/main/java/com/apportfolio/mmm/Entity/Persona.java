@@ -58,7 +58,7 @@ public class Persona {
 
     //constructores
 
-    /*
+
     public Persona() {
     }
 
@@ -71,6 +71,6 @@ public class Persona {
         this.oficio = oficio;
     }
 
-     */
+
 
 }

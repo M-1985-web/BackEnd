@@ -2,6 +2,7 @@ package com.apportfolio.mmm.Service;
 
 
 import com.apportfolio.mmm.Entity.Persona;
+import com.apportfolio.mmm.Interface.IPersonaService;
 import com.apportfolio.mmm.Repository.PersonaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
