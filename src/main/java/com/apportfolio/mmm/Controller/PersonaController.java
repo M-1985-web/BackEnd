@@ -12,26 +12,26 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/persona")
+//@RequestMapping("/persona")
 @CrossOrigin(origins = "https://frontendmmm.web.app")
 
 public class PersonaController {
     @Autowired
     public IPersonaService iPersonaService;
 
-    @GetMapping("/traer")
+    @GetMapping("/persona/traer")
     public List<Persona> getPersona() {
         return iPersonaService.getPersona();
     }
 
     //@PreAuthorize("hasRole('ADMIN')") //este renglón refiere a que estas acciones las puede hacer solo el administrador
-    @PostMapping("/crear")
+    @PostMapping("/persona/crear")
     public String createPersona(@RequestBody Persona persona) {
         iPersonaService.savePersona(persona);
         return "La persona fue creada correctamente";
     }
     //@PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/borrar/{id}")
+    @DeleteMapping("/persona/borrar/{id}")
     public String deletePersona(@PathVariable Long id){
         iPersonaService.deletePersona(id);
         return "La persona fue eliminada correctamente";
@@ -39,7 +39,7 @@ public class PersonaController {
 
     //@PreAuthorize("hasRole('ADMIN')")
     //URL:PUERTO/personas/editar/4/nombre & apellido & img
-    @PutMapping("/editar/{id}")
+    @PutMapping("/persona/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
                                @RequestParam("nombre") String nuevoNombre,
                                @RequestParam("apellido") String nuevoApellido,
@@ -58,7 +58,7 @@ public class PersonaController {
         return persona;
     }
 
-    @GetMapping("/traer/perfil")
+    @GetMapping("/persona/traer/perfil")
     public Persona findPersona(){
         return iPersonaService.findPersona((long)1);
     }
