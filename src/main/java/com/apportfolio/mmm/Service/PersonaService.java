@@ -2,7 +2,7 @@ package com.apportfolio.mmm.Service;
 
 
 import com.apportfolio.mmm.Entity.Persona;
-import com.apportfolio.mmm.Interface.IPersonaService;
+
 import com.apportfolio.mmm.Repository.PersonaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,32 +13,31 @@ import java.util.List;
 
 @Service
 @Transactional
-public class PersonaService implements IPersonaService {
+public class PersonaService {
+
     @Autowired
-    PersonaRepo personaRepo;
+    private final PersonaRepo personaRepo;
 
-    @Override
-    public List<Persona> getPersona() {
-        List<Persona> persona = personaRepo.findAll();
-        return persona;
+    @Autowired
+    public PersonaService(PersonaRepo personaRepo){
+        this.personaRepo = personaRepo;
     }
 
-    @Override
-    public void savePersona(Persona persona) {
-        personaRepo.save(persona);
+    public List<Persona> buscarPersona(){
+        return personaRepo.findAll();
     }
 
-    @Override
-    public void deletePersona(Long id) {
+    public Persona editpersona(Persona pers){
+        return personaRepo.save(pers);
+    }
+
+    public void borrapersona(int id){
         personaRepo.deleteById(id);
     }
 
-    @Override
-    public Persona findPersona(Long id) {
-        Persona persona = personaRepo.findById(id).orElse(null);
-        return persona;
-
+    public Persona BuscarporId(int id){
+        Persona pers = personaRepo.findById(id).orElse(null);
+        return pers;
     }
-
 
 }

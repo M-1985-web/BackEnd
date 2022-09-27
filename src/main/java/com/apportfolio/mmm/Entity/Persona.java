@@ -24,7 +24,7 @@ import lombok.Setter;
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
     @NotBlank
     @Size(min = 1, max = 50, message = "nombre muy extenso, por favor agregar otro")
     private String nombre;
@@ -37,8 +37,10 @@ public class Persona {
     private String aboutme;
 
     @NotBlank
+    @Size(min = 1, max = 50, message = " apellido muy extenso, por favor agregar otro")
     private String oficio;
 
+    @Size(min = 1, max = 50, message = "no ha ingresado la imagen, maximo 45 caracteres")
     private String imgurl;
 
 
