@@ -12,14 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-<<<<<<< HEAD
 @RequestMapping("persona/")
 @CrossOrigin(origins = "https://frontendmmm.web.app/")
-=======
-@RequestMapping("persona")
-@CrossOrigin(origins = "https://frontendmmm.web.app")
->>>>>>> f806bae90ba533dcc1ef6fdca8b623be30d6987e
 
+
+
+//persona controller
 public class PersonaController {
     private final PersonaService personaService;
 
