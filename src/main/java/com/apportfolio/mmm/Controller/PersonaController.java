@@ -25,8 +25,6 @@ public class PersonaController {
         this.personaService = personaService;
     }
 
-
-
     @GetMapping("buscar/{id}")
     public ResponseEntity<Persona> buscarPersona(@PathVariable("id")int id){
         Persona pers = personaService.BuscarporId(id);
@@ -38,5 +36,13 @@ public class PersonaController {
         Persona editpers = personaService.editpersona(pers);
         return new ResponseEntity<>(editpers, HttpStatus.OK);
     }
+
+    /*
+    @PostMapping("/personas/crear")
+    public String createPersona(@RequestBody Persona persona) {
+        personaService.savePersona(persona);
+        return "La persona fue creada correctamente";
+    }
+    */
 
 }
