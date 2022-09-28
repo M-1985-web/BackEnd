@@ -33,7 +33,6 @@ public class PersonaService implements IPersonaService{
         Persona persona = personaRepo.findById(1).orElse(null);
         persona.setNombre(pers.getNombre());
         persona.setApellido(pers.getApellido());
-        persona.setImgurl(pers.getImgurl());
         persona.setAboutme(pers.getAboutme());
         persona.setOficio(pers.getOficio());
 
