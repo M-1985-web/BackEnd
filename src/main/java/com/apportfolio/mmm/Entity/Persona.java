@@ -37,7 +37,7 @@ public class Persona {
     private String aboutme;
 
     @NotBlank
-    @Size(min = 1, max = 50, message = " apellido muy extenso, por favor agregar otro")
+    @Size(min = 1, max = 50, message = "muy extenso, por favor agregar otro")
     private String oficio;
 
     @Size(min = 1, max = 50, message = "no ha ingresado la imagen, maximo 45 caracteres")

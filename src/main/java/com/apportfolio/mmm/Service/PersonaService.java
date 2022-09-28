@@ -13,12 +13,56 @@ import java.util.List;
 
 @Service
 @Transactional
-public class PersonaService {
+public class PersonaService implements IPersonaService{
 
+    //traer, save, delete, editar persona
     @Autowired
-    private final PersonaRepo personaRepo;
+    PersonaRepo personaRepo;
 
-    @Autowired
+    //borrar
+    @Override
+    public void deletePersona(int id) {
+        personaRepo.deleteById(id);
+    }
+
+
+
+    //editar
+    @Override
+    public Persona editarPersona(Persona pers) {
+        Persona persona = personaRepo.findById(1).orElse(null);
+        persona.setNombre(pers.getNombre());
+        persona.setApellido(pers.getApellido());
+        persona.setImgurl(pers.getImgurl());
+        persona.setAboutme(pers.getAboutme());
+        persona.setOficio(pers.getOficio());
+
+        return persona;
+        //return personaRepo.save(pers);
+    }
+
+
+    //save
+
+    @Override
+    public void savePersona(Persona persona) {
+
+        personaRepo.save(persona);
+
+    }
+
+
+
+    //traer
+
+    @Override
+    public Persona traerPersona() {
+        return personaRepo.getReferenceById(1);
+    }
+
+
+
+    /*
     public PersonaService(PersonaRepo personaRepo){
         this.personaRepo = personaRepo;
     }
@@ -27,17 +71,12 @@ public class PersonaService {
         return personaRepo.findAll();
     }
 
-    public Persona editpersona(Persona pers){
-        return personaRepo.save(pers);
-    }
-
-    public void borrapersona(int id){
-        personaRepo.deleteById(id);
-    }
 
     public Persona BuscarporId(int id){
         Persona pers = personaRepo.findById(id).orElse(null);
         return pers;
     }
+
+     */
 
 }
