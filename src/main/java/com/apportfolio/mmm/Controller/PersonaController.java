@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("personas")
-@CrossOrigin(origins = "https://frontendmmm.web.app/")
+@RequestMapping("persona")
+@CrossOrigin(origins = "https://frontendmmm.web.app")
 
 
 
