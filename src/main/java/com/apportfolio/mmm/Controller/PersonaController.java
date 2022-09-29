@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("persona/")
+@RequestMapping("personas")
 @CrossOrigin(origins = "https://frontendmmm.web.app/")
 
 
@@ -24,7 +24,7 @@ public class PersonaController {
 
     public IPersonaService iPersonaService;
 
-    @GetMapping("traer")
+    @GetMapping("/traer")
     public ResponseEntity<?> mostrarUsuario() {
         Persona persona = iPersonaService.traerPersona();
         if (persona == null) {
@@ -33,7 +33,7 @@ public class PersonaController {
         return new ResponseEntity<>(persona, HttpStatus.OK);
     }
 
-    @PostMapping("crear")
+    @PostMapping("/crear")
     public ResponseEntity<?> agregarPersona(@RequestBody Persona perso) {
         if (StringUtils.isBlank(perso.getNombre())
                 && StringUtils.isBlank(perso.getApellido())
@@ -45,7 +45,7 @@ public class PersonaController {
         return new ResponseEntity<>("Persona creada exitosamente", HttpStatus.OK);
     }
 
-    @PutMapping("editar")
+    @PutMapping("/editar")
     public ResponseEntity<?> editar(@RequestBody Persona persona) {
         if (StringUtils.isBlank(persona.getNombre())
                 && StringUtils.isBlank(persona.getApellido())
